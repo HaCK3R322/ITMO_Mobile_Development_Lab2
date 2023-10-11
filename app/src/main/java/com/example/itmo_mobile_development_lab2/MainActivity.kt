@@ -1,46 +1,33 @@
 package com.example.itmo_mobile_development_lab2
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.itmo_mobile_development_lab2.ui.theme.ITMO_Mobile_Development_Lab2Theme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ITMO_Mobile_Development_Lab2Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        imageView.setImageResource(R.drawable.proper)
+
+        val textView = findViewById<TextView>(R.id.textView)
+        textView.text = "Вот такие пироги!"
+
+        val button = findViewById<Button>(R.id.button)
+        button.text = "Сделать больше микрочелов"
+        button.setOnClickListener{
+            openSecondActivity()
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ITMO_Mobile_Development_Lab2Theme {
-        Greeting("Android")
+    fun openSecondActivity() {
+        val intent = Intent(this, SecondaryActivity::class.java)
+        startActivity(intent)
     }
 }
